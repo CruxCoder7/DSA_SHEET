@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum Status {
+  SOLVED
+  REVISIT
+  UNSOLVED
+}
+
+model User {
+  id                 String              @id @default(auto()) @map("_id") @db.ObjectId
+  name               String
+  email              String              @unique
+  attempted_problems AttemptedProblems[]
+}
+
+model AttemptedProblems {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  status     Status   @default(UNSOLVED)
+  userId     String   @db.ObjectId
+  problemsId String   @db.ObjectId
+  problem    Problems @relation(fields: [problemsId], references: [id])
+  User       User     @relation(fields: [userId], references: [id])
+
+  @@index([userId, status])
+}
+
+model Problems {
+  id                 String              @id @default(auto()) @map("_id") @db.ObjectId
+  difficulty         Difficulty
+  link               String
+  name               String
+  topic              String
+  attempted_problems AttemptedProblems[]
+}
