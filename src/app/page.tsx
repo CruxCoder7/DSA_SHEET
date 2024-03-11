@@ -1,9 +1,9 @@
 import HeroButton from '@/components/HeroButton';
+import Roadmap from '@/components/Roadmap';
 import SmoothScrollButton from '@/components/SmoothScrollButton';
 import { getSession } from '@auth0/nextjs-auth0';
 import { Ubuntu } from 'next/font/google';
 import Image from 'next/image';
-import { redirect } from 'next/navigation';
 
 const ubuntu = Ubuntu({ weight: '500', subsets: ['latin'] });
 
@@ -29,16 +29,14 @@ export default async function Home() {
           path={session?.user ? '/sheet' : '/api/auth/login'}
           value={session?.user ? 'Go to Sheet' : 'Get Started'}
         />
-        <div className="flex flex-col items-center gap-3 justify-center mt-20">
+        <div className="flex flex-col items-center gap-6 justify-center mt-20">
           <p className={`text-slate-200 text-sm ${ubuntu.className}`}>
             Check out our Roadmap
           </p>
           <SmoothScrollButton />
         </div>
       </div>
-
-      {/* Roadmap section */}
-      <section className="min-h-screen mt-20 " id="roadmap"></section>
+      <Roadmap />
     </main>
   );
 }

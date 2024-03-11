@@ -11,7 +11,7 @@ export default function SmoothScrollButton() {
     <MdOutlineKeyboardDoubleArrowDown
       color="white"
       size={70}
-      className="cursor-pointer"
+      className="cursor-pointer animate-bounce"
       onClick={handleClick}
     />
   );

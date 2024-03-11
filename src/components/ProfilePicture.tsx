@@ -33,7 +33,7 @@ export default function ProfilePicture({
             className={`text-red-700 ${ubuntu.className}`}
             onClick={() =>
               (window.location.href =
-                'https://eef8-2401-4900-634e-4e69-8917-41c2-17f3-b58e.ngrok-free.app/api/auth/logout')
+                'https://7fb2-2406-7400-c6-31c8-85d-c484-f512-8c92.ngrok-free.app/api/auth/logout')
             }
           >
             Logout

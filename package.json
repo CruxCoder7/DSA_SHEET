@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "type": "module",
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
     "@prisma/client": "^5.10.2",
