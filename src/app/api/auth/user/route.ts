@@ -1,6 +1,15 @@
 import prisma from '@/db';
 import { NextRequest } from 'next/server';
 
+async function InsertProblems() {
+    const problem_set = await prisma.problems.findMany() as unknown as { status: string; }[];
+
+    for (let i = 0; i < problem_set.length; i++) {
+        problem_set[i].status = "UNSOLVED";
+    }
+    return problem_set;
+}
+
 export async function POST(req: NextRequest) {
     const data = await req.json();
     const parsed_data = JSON.parse(data.data);
@@ -20,22 +29,11 @@ export async function POST(req: NextRequest) {
     const user = await prisma.user.create({
         data: {
             name,
-            email
+            email,
+            attempted_problems: await InsertProblems()
         }
     });
-    prisma.user.update({
-        where: {
-            email
-        },
-        data: {
-            attempted_problems: {
-                connect: {
-                    id: '',
-                    status: 'SOLVED',
-                },
-            }
-        }
-    });
+
     return Response.json({ user }, {
         status: 200
     });

@@ -126,14 +126,13 @@ export default function Roadmap() {
             className="col-span-1 row-span-1 col-start-2 row-start-9"
             size={70}
           />
-          <Link
-            href={'/sheet#Binary Tree'}
+          <p
             className={`${ubuntu.className} bg-[#333339] text-white rounded-lg shadow-xl hover-tooltip
                hover:shadow-red-600 text-center p-6 mt-auto col-span-1 row-span-1 col-start-1 row-start-9`}
             title="💡One of the Most Important Topic"
           >
             Binary Tree
-          </Link>
+          </p>
           <PiArrowBendDownRightThin
             color="white"
             className="col-span-1 ml-80 row-span-1 col-start-1 row-start-10"

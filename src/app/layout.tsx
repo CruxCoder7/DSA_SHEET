@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'SNUC-CC | DSA SHEET',
-  description: `A Data Structures and Algorithms problem sheet cureated by the Competitive Programming Team 
+  description: `A Data Structures and Algorithms problem sheet curated by the Competitive Programming Team 
     at SNUC Coding Club `,
 };
 

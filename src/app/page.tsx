@@ -1,4 +1,5 @@
 import HeroButton from '@/components/HeroButton';
+import LinearWithValueLabel from '@/components/ProgressBar';
 import Roadmap from '@/components/Roadmap';
 import SmoothScrollButton from '@/components/SmoothScrollButton';
 import { getSession } from '@auth0/nextjs-auth0';
@@ -37,6 +38,7 @@ export default async function Home() {
         </div>
       </div>
       <Roadmap />
+      <LinearWithValueLabel />
     </main>
   );
 }

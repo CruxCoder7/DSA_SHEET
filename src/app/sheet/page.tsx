@@ -1,79 +1,73 @@
+import { getCurrentUser } from '@/actions/getCurrentUser';
+import { Card } from '@/components/Card';
 import Navbar from '@/components/Navbar';
-import { getSession } from '@auth0/nextjs-auth0';
-import { redirect } from 'next/navigation';
 import prisma from '@/db';
+import { getSession } from '@auth0/nextjs-auth0';
 import { Problems } from '@prisma/client';
 import { Ubuntu } from 'next/font/google';
-import { IoIosArrowDown } from 'react-icons/io';
+import { redirect } from 'next/navigation';
 
 const ubuntu = Ubuntu({ weight: '500', subsets: ['latin'] });
 
-function groupByNameByTopic(
-  people: Problems[]
-): { topic: string; names: string[] }[] {
-  const groupedArray: { topic: string; names: string[] }[] = [];
+type AttemptedProblem = Problems & {
+  status: 'SOLVED' | 'REVISIT' | 'UNSOLVED';
+};
+
+function groupByTopic(
+  people: AttemptedProblem[]
+): { topic: string; names: AttemptedProblem[] }[] {
+  const groupedArray: {
+    topic: string;
+    names: AttemptedProblem[];
+  }[] = [];
 
   for (let i = 0; i < people.length; i++) {
-    const { name, topic } = people[i];
+    const { topic } = people[i];
     let found = false;
     for (let j = 0; j < groupedArray.length; j++) {
       if (groupedArray[j].topic === topic) {
-        groupedArray[j].names.push(name);
+        groupedArray[j].names.push(people[i]);
         found = true;
         break;
       }
     }
     if (!found) {
-      groupedArray.push({ topic, names: [name] });
+      groupedArray.push({ topic, names: [people[i]] });
     }
   }
 
   return groupedArray;
 }
 
-export default async function Sheet({
-  params,
-  searchParams,
-}: {
-  params: { slug: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
+export default async function Sheet() {
   const session = await getSession();
   if (!session) return redirect('/');
 
-  console.log(searchParams);
+  const current_user_id = await getCurrentUser(session); // '65f1b06db2461ddb118194be';
+  if (!current_user_id) return;
 
-  const data = await prisma.problems.findMany({
-    orderBy: {
-      id: 'asc',
+  const user = await prisma.user.findUnique({
+    where: {
+      id: current_user_id,
     },
   });
+  if (!user) return;
 
-  const problems = groupByNameByTopic(data);
+  const attempted_problems = user.attempted_problems as AttemptedProblem[];
+  const problems = groupByTopic(attempted_problems);
 
   return (
     <div className="w-full min-h-screen">
-      <Navbar session={session} total_problems={data.length} />
+      <Navbar session={session} total_problems={attempted_problems.length} />
       <div className={`w-[70%] m-auto ${ubuntu.className}`}>
         <div className="grid grid-cols-1 gap-10 p-10">
           {problems.map((problem, i) => (
             <div key={i} id={problem.topic}>
-              <div className="col-span-1 row-span-1 bg-[#333339] text-red-500 h-20 flex justify-between px-5 items-center text-2xl cursor-pointer">
-                {problem.topic}
-                <IoIosArrowDown color="white" />
-              </div>
-              <div className="bg-[#27272a] grid grid-cols-1 gap-5">
-                {problem.names.map((pb, j) => (
-                  <div
-                    key={j}
-                    className={`text-white  w-full p-5 ${
-                      j + 1 !== problem.names.length ? 'border-b' : 'border-b-0'
-                    }`}
-                  >
-                    {pb}
-                  </div>
-                ))}
-              </div>
+              <Card
+                topic={problem.topic}
+                problem_names={problem.names}
+                user_id={current_user_id}
+              />
             </div>
           ))}
         </div>

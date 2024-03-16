@@ -20,28 +20,16 @@ enum Status {
 }
 
 model User {
-  id                 String              @id @default(auto()) @map("_id") @db.ObjectId
+  id                 String @id @default(auto()) @map("_id") @db.ObjectId
   name               String
-  email              String              @unique
-  attempted_problems AttemptedProblems[]
-}
-
-model AttemptedProblems {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  status     Status   @default(UNSOLVED)
-  userId     String   @db.ObjectId
-  problemsId String   @db.ObjectId
-  problem    Problems @relation(fields: [problemsId], references: [id])
-  User       User     @relation(fields: [userId], references: [id])
-
-  @@index([userId, status])
+  email              String @unique
+  attempted_problems Json
 }
 
 model Problems {
-  id                 String              @id @default(auto()) @map("_id") @db.ObjectId
-  difficulty         Difficulty
-  link               String
-  name               String
-  topic              String
-  attempted_problems AttemptedProblems[]
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  difficulty Difficulty
+  link       String
+  name       String
+  topic      String
 }
