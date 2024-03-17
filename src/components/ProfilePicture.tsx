@@ -1,8 +1,6 @@
 'use client';
-
 import { Ubuntu } from 'next/font/google';
 import Image from 'next/image';
-import { redirect } from 'next/navigation';
 import { useState } from 'react';
 
 const ubuntu = Ubuntu({ weight: '500', subsets: ['latin'] });
@@ -32,8 +30,7 @@ export default function ProfilePicture({
           <p
             className={`text-red-700 ${ubuntu.className}`}
             onClick={() =>
-              (window.location.href =
-                'https://f8e8-2401-4900-230e-ea85-a069-6fba-4842-53ac.ngrok-free.app/api/auth/logout')
+              (window.location.href = 'http://localhost:3000/api/auth/logout')
             }
           >
             Logout

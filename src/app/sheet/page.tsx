@@ -13,13 +13,10 @@ type AttemptedProblem = Problems & {
   status: 'SOLVED' | 'REVISIT' | 'UNSOLVED';
 };
 
-function groupByTopic(
-  people: AttemptedProblem[]
-): { topic: string; names: AttemptedProblem[] }[] {
-  const groupedArray: {
-    topic: string;
-    names: AttemptedProblem[];
-  }[] = [];
+type GroupByTopicType = { topic: string; names: AttemptedProblem[] }[];
+
+function groupByTopic(people: AttemptedProblem[]): GroupByTopicType {
+  const groupedArray: GroupByTopicType = [];
 
   for (let i = 0; i < people.length; i++) {
     const { topic } = people[i];
@@ -43,7 +40,7 @@ export default async function Sheet() {
   const session = await getSession();
   if (!session) return redirect('/');
 
-  const current_user_id = await getCurrentUser(session); // '65f1b06db2461ddb118194be';
+  const current_user_id = await getCurrentUser(session);
   if (!current_user_id) return;
 
   const user = await prisma.user.findUnique({
@@ -51,6 +48,7 @@ export default async function Sheet() {
       id: current_user_id,
     },
   });
+
   if (!user) return;
 
   const attempted_problems = user.attempted_problems as AttemptedProblem[];
@@ -58,7 +56,7 @@ export default async function Sheet() {
 
   return (
     <div className="w-full min-h-screen">
-      <Navbar session={session} total_problems={attempted_problems.length} />
+      <Navbar session={session} attempted_problems={attempted_problems} />
       <div className={`w-[70%] m-auto ${ubuntu.className}`}>
         <div className="grid grid-cols-1 gap-10 p-10">
           {problems.map((problem, i) => (

@@ -101,7 +101,7 @@ export default function Roadmap() {
             size={70}
           />
           <Link
-            href={'/sheet#Heaps / Priority Queues'}
+            href={'/sheet#Heaps/Priority Queues'}
             className={`${ubuntu.className} bg-[#333339] text-white rounded-lg shadow-xl hover-tooltip
                hover:shadow-red-600 text-center p-6 mt-auto col-span-1 row-span-1 col-start-1 row-start-7`}
             title="💡Lays the foundation for certain graph algorithms and is one of the favorite topics of many companies including MAANG."
@@ -126,13 +126,14 @@ export default function Roadmap() {
             className="col-span-1 row-span-1 col-start-2 row-start-9"
             size={70}
           />
-          <p
+          <Link
+            href={'/sheet#Binary Tree'}
             className={`${ubuntu.className} bg-[#333339] text-white rounded-lg shadow-xl hover-tooltip
                hover:shadow-red-600 text-center p-6 mt-auto col-span-1 row-span-1 col-start-1 row-start-9`}
             title="💡One of the Most Important Topic"
           >
             Binary Tree
-          </p>
+          </Link>
           <PiArrowBendDownRightThin
             color="white"
             className="col-span-1 ml-80 row-span-1 col-start-1 row-start-10"
@@ -164,7 +165,8 @@ export default function Roadmap() {
             className="col-span-1 ml-80 row-span-1 col-start-1 row-start-12"
             size={70}
           />
-          <p
+          <Link
+            href={'/sheet#Graphs'}
             className={`${ubuntu.className} bg-[#27272a] text-white rounded-lg shadow-xl hover-tooltip
                hover:shadow-[#bf950c] text-center p-6 mt-auto col-span-1 row-span-1 col-start-2 row-start-12`}
             title={`
@@ -179,7 +181,7 @@ export default function Roadmap() {
           `}
           >
             Graphs
-          </p>
+          </Link>
           <PiArrowBendDownLeftThin
             color="white"
             className="col-span-1 row-span-1 col-start-2 row-start-13"

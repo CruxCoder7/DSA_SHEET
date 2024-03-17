@@ -1,6 +1,7 @@
 'use server';
 import prisma from "@/db";
 import { Problems } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 type AttemptedProblem = Problems & {
     status: "SOLVED" | "REVISIT" | "UNSOLVED";
@@ -18,10 +19,12 @@ export default async function updateProblemStatus({ user_id, problem_id, status 
         }
     }
 
-    return await prisma.user.update({
+    await prisma.user.update({
         where: { id: user_id },
         data: {
             attempted_problems
         }
     });
+
+    revalidatePath('/sheet');
 }

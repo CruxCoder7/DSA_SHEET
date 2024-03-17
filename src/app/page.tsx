@@ -1,5 +1,4 @@
 import HeroButton from '@/components/HeroButton';
-import LinearWithValueLabel from '@/components/ProgressBar';
 import Roadmap from '@/components/Roadmap';
 import SmoothScrollButton from '@/components/SmoothScrollButton';
 import { getSession } from '@auth0/nextjs-auth0';
@@ -10,7 +9,6 @@ const ubuntu = Ubuntu({ weight: '500', subsets: ['latin'] });
 
 export default async function Home() {
   const session = await getSession();
-  // if (session?.user) return redirect('/sheet');
 
   return (
     <main className="min-h-screen flex flex-col">
@@ -38,7 +36,6 @@ export default async function Home() {
         </div>
       </div>
       <Roadmap />
-      <LinearWithValueLabel />
     </main>
   );
 }

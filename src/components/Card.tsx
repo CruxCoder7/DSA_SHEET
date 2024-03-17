@@ -1,10 +1,11 @@
 'use client';
-import { useState } from 'react';
-import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
-import { GrCheckboxSelected } from 'react-icons/gr';
+import updateProblemStatus from '@/actions/updateProblemStatus';
 import { Problems } from '@prisma/client';
 import Link from 'next/link';
-import updateProblemStatus from '@/actions/updateProblemStatus';
+import { useState } from 'react';
+import { GrCheckboxSelected } from 'react-icons/gr';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import LinearWithValueLabel from './ProgressBar';
 
 type AttemptedProblem = Problems & {
   status: 'SOLVED' | 'REVISIT' | 'UNSOLVED';
@@ -37,6 +38,14 @@ export function Card({
     }, {})
   );
 
+  const initial_count = problem_names.reduce((acc, pb) => {
+    if (pb.status === 'SOLVED') {
+      return acc + 1;
+    }
+    return acc;
+  }, 0);
+  const [count, setCount] = useState(initial_count);
+
   const toggleCheckbox = (problemId: string) => {
     setCheckboxStates((prevState) => {
       const newState = { ...prevState };
@@ -53,6 +62,9 @@ export function Card({
     toggleCheckbox(problemId);
 
     const newStatus = checkboxStates[problemId].checked ? 'UNSOLVED' : 'SOLVED';
+    if (newStatus === 'SOLVED') setCount((prev) => prev + 1);
+    else setCount((prev) => prev - 1);
+
     updateProblemStatus({ user_id, problem_id: problemId, status: newStatus });
   };
 
@@ -60,10 +72,14 @@ export function Card({
     <>
       <div
         className="col-span-1 row-span-1 bg-[#333339] text-red-500 h-20 flex justify-between px-5 
-        items-center text-2xl cursor-pointer"
+        items-center text-xl cursor-pointer"
         onClick={() => setIsOpen(!open)}
       >
         {topic}
+        <LinearWithValueLabel
+          progress_value={count}
+          max_value={problem_names.length}
+        />
         {open ? (
           <IoIosArrowUp color="white" />
         ) : (
@@ -94,8 +110,8 @@ function SubCard({
   onCheckboxChange: (problemId: string) => void;
 }) {
   return (
-    <div className="bg-[#27272a] grid grid-cols-1 gap-5">
-      {problem_names.map(({ name, id, link, difficulty, status }, index) => (
+    <div className={`bg-[#27272a] grid grid-cols-1 gap-5`}>
+      {problem_names.map(({ name, id, link, difficulty }, index) => (
         <div
           key={id}
           className={`text-white flex justify-between items-center  w-full p-5 ${
@@ -103,7 +119,7 @@ function SubCard({
           }`}
         >
           <div className="flex justify-center items-center gap-5">
-            <Link href={link} target="_blank">
+            <Link href={link} target="_blank" className=" hover:underline">
               {name}
             </Link>
             <p
