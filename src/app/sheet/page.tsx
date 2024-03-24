@@ -57,7 +57,7 @@ export default async function Sheet() {
   return (
     <div className="w-full min-h-screen">
       <Navbar session={session} attempted_problems={attempted_problems} />
-      <div className={`w-[70%] m-auto ${ubuntu.className}`}>
+      <div className={`lg:md:w-[70%] w-full m-auto ${ubuntu.className}`}>
         <div className="grid grid-cols-1 gap-10 p-10">
           {problems.map((problem, i) => (
             <div key={i} id={problem.topic}>

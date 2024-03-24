@@ -1,5 +1,4 @@
 'use server';
-
 import { Session } from "@auth0/nextjs-auth0";
 import prisma from "@/db";
 

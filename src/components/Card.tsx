@@ -71,19 +71,21 @@ export function Card({
   return (
     <>
       <div
-        className="col-span-1 row-span-1 bg-[#333339] text-red-500 h-20 flex justify-between px-5 
-        items-center text-xl cursor-pointer"
+        className="col-span-1 row-span-1 bg-[#333339] h-20 flex flex-col lg:md:flex-row justify-between px-5 
+        items-center cursor-pointer"
         onClick={() => setIsOpen(!open)}
       >
-        {topic}
+        <p className="text-red-500 text-xl lg:md:mt-0 mt-2 lg:md:w-[50%]">
+          {topic}
+        </p>
         <LinearWithValueLabel
           progress_value={count}
           max_value={problem_names.length}
         />
         {open ? (
-          <IoIosArrowUp color="white" />
+          <IoIosArrowUp color="white" className="hidden lg:md:block" />
         ) : (
-          <IoIosArrowDown color="white" />
+          <IoIosArrowDown color="white" className="hidden lg:md:block" />
         )}
       </div>
       {open && (
@@ -114,16 +116,20 @@ function SubCard({
       {problem_names.map(({ name, id, link, difficulty }, index) => (
         <div
           key={id}
-          className={`text-white flex justify-between items-center  w-full p-5 ${
+          className={`text-white flex justify-between items-center w-full p-5 ${
             index + 1 !== problem_names.length ? 'border-b' : 'border-b-0'
           }`}
         >
-          <div className="flex justify-center items-center gap-5">
-            <Link href={link} target="_blank" className=" hover:underline">
+          <div className="flex flex-col justify-center gap-3 w-[70%] lg:md:w-full">
+            <Link
+              href={link}
+              target="_blank"
+              className=" hover:underline w-fit lg:md:text-lg"
+            >
               {name}
             </Link>
             <p
-              className={`text-xs mt-1 ${
+              className={`text-xs 0  mt-0 lg:md:mt-1 ${
                 difficulty === 'EASY'
                   ? 'text-green-700'
                   : difficulty === 'MEDIUM'

@@ -24,7 +24,7 @@ export default function ProfilePicture({
       />
       {isOpen && (
         <div
-          className="absolute top-28 right-[20.2rem] bg-white p-2 flex rounded-md hover:cursor-pointer
+          className="absolute top-28 lg:md:right-[20.2rem] right-[1.5rem] bg-white p-2 flex rounded-md hover:cursor-pointer
          hover:bg-slate-100"
         >
           <p
