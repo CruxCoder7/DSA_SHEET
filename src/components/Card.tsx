@@ -1,34 +1,23 @@
 'use client';
 import updateProblemStatus from '@/actions/updateProblemStatus';
-import { Problems } from '@prisma/client';
 import Link from 'next/link';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { GrCheckboxSelected } from 'react-icons/gr';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import {
+  CardProps,
+  CheckBoxProps,
+  CheckboxStates,
+  SubCardProps,
+} from '../../types/types';
 import LinearWithValueLabel from './ProgressBar';
-
-type AttemptedProblem = Problems & {
-  status: 'SOLVED' | 'REVISIT' | 'UNSOLVED';
-};
-
-type CheckboxStates = {
-  [key: string]: {
-    checked: boolean;
-    status: 'SOLVED' | 'REVISIT' | 'UNSOLVED';
-  };
-};
 
 export function Card({
   topic,
   problem_names,
   user_id,
   onStatusUpdate,
-}: {
-  topic: string;
-  problem_names: AttemptedProblem[];
-  user_id: string;
-  onStatusUpdate: Dispatch<SetStateAction<number>>;
-}) {
+}: CardProps) {
   const [open, setIsOpen] = useState(true);
   const [checkboxStates, setCheckboxStates] = useState<CheckboxStates>(
     problem_names.reduce((acc: any, problem) => {
@@ -111,12 +100,7 @@ function SubCard({
   user_id,
   checkboxStates,
   onCheckboxChange,
-}: {
-  problem_names: AttemptedProblem[];
-  user_id: string;
-  checkboxStates: CheckboxStates;
-  onCheckboxChange: (problemId: string) => void;
-}) {
+}: SubCardProps) {
   return (
     <div className={`bg-[#27272a] grid grid-cols-1 gap-5`}>
       {problem_names.map(({ name, id, link, difficulty }, index) => (
@@ -159,17 +143,7 @@ function SubCard({
   );
 }
 
-function CheckBox({
-  status,
-  isChecked,
-  onChange,
-}: {
-  problem_id: string;
-  user_id: string;
-  status: 'SOLVED' | 'REVISIT' | 'UNSOLVED';
-  isChecked: boolean;
-  onChange: () => void;
-}) {
+function CheckBox({ status, isChecked, onChange }: CheckBoxProps) {
   const checkboxColor =
     status === 'SOLVED' ? 'green' : isChecked ? 'green' : 'white';
 

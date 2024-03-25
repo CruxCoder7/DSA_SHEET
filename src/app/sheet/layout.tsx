@@ -2,14 +2,8 @@ import { getCurrentUser } from '@/actions/getCurrentUser';
 import { Claims, Session, getSession } from '@auth0/nextjs-auth0';
 import { redirect } from 'next/navigation';
 import prisma from '@/db';
-import { Problems } from '@prisma/client';
 import Sheet from './page';
-
-type AttemptedProblem = Problems & {
-  status: 'SOLVED' | 'REVISIT' | 'UNSOLVED';
-};
-
-type GroupByTopicType = { topic: string; names: AttemptedProblem[] }[];
+import { AttemptedProblem, GroupByTopicType } from '../../../types/types';
 
 function groupByTopic(people: AttemptedProblem[]): GroupByTopicType {
   const groupedArray: GroupByTopicType = [];

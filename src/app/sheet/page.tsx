@@ -1,19 +1,5 @@
-import { Problems } from '@prisma/client';
+import { SheetProps } from '../../../types/types';
 import SheetClient from './sheet-client';
-import { Claims } from '@auth0/nextjs-auth0';
-
-type AttemptedProblem = Problems & {
-  status: 'SOLVED' | 'REVISIT' | 'UNSOLVED';
-};
-
-type GroupByTopicType = { topic: string; names: AttemptedProblem[] }[];
-
-type SheetProps = {
-  session_user: Claims;
-  attempted_problems: AttemptedProblem[];
-  problems: GroupByTopicType;
-  current_user_id: string;
-};
 
 export default function Sheet({
   session_user,

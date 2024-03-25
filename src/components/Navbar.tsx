@@ -1,17 +1,6 @@
-import { Claims } from '@auth0/nextjs-auth0';
-import { Problems } from '@prisma/client';
 import { Ubuntu } from 'next/font/google';
+import { NavbarProps } from '../../types/types';
 import ProfilePicture from './ProfilePicture';
-
-type AttemptedProblem = Problems & {
-  status: 'SOLVED' | 'REVISIT' | 'UNSOLVED';
-};
-
-type NavbarProps = {
-  session_user: Claims;
-  attempted_problems: AttemptedProblem[];
-  total_solved: number;
-};
 
 const ubuntu = Ubuntu({ weight: '500', subsets: ['latin'] });
 

@@ -1,23 +1,9 @@
 'use client';
 import { Card } from '@/components/Card';
 import Navbar from '@/components/Navbar';
-import { Claims } from '@auth0/nextjs-auth0';
-import { Problems } from '@prisma/client';
 import { Ubuntu } from 'next/font/google';
 import { useState } from 'react';
-
-type AttemptedProblem = Problems & {
-  status: 'SOLVED' | 'REVISIT' | 'UNSOLVED';
-};
-
-type SheetProps = {
-  session_user: Claims;
-  attempted_problems: AttemptedProblem[];
-  problems: GroupByTopicType;
-  current_user_id: string;
-};
-
-type GroupByTopicType = { topic: string; names: AttemptedProblem[] }[];
+import { SheetProps } from '../../../types/types';
 
 const ubuntu = Ubuntu({ weight: '500', subsets: ['latin'] });
 
