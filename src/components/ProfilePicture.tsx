@@ -30,8 +30,7 @@ export default function ProfilePicture({
           <p
             className={`text-red-700 ${ubuntu.className}`}
             onClick={() =>
-              (window.location.href =
-                'https://dsa-sheet.vercel.app/api/auth/logout')
+              (window.location.href = 'http://localhost:3000/api/auth/logout')
             }
           >
             Logout

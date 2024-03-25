@@ -2,7 +2,7 @@
 import updateProblemStatus from '@/actions/updateProblemStatus';
 import { Problems } from '@prisma/client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { GrCheckboxSelected } from 'react-icons/gr';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import LinearWithValueLabel from './ProgressBar';
@@ -22,10 +22,12 @@ export function Card({
   topic,
   problem_names,
   user_id,
+  onStatusUpdate,
 }: {
   topic: string;
   problem_names: AttemptedProblem[];
   user_id: string;
+  onStatusUpdate: Dispatch<SetStateAction<number>>;
 }) {
   const [open, setIsOpen] = useState(true);
   const [checkboxStates, setCheckboxStates] = useState<CheckboxStates>(
@@ -62,9 +64,13 @@ export function Card({
     toggleCheckbox(problemId);
 
     const newStatus = checkboxStates[problemId].checked ? 'UNSOLVED' : 'SOLVED';
-    if (newStatus === 'SOLVED') setCount((prev) => prev + 1);
-    else setCount((prev) => prev - 1);
-
+    if (newStatus === 'SOLVED') {
+      setCount((prev) => prev + 1);
+      onStatusUpdate((prev) => prev + 1);
+    } else {
+      setCount((prev) => prev - 1);
+      onStatusUpdate((prev) => prev - 1);
+    }
     updateProblemStatus({ user_id, problem_id: problemId, status: newStatus });
   };
 
