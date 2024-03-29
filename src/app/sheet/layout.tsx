@@ -1,5 +1,5 @@
 import { getCurrentUser } from '@/actions/getCurrentUser';
-import { Claims, Session, getSession } from '@auth0/nextjs-auth0';
+import { Claims, getSession } from '@auth0/nextjs-auth0';
 import { redirect } from 'next/navigation';
 import prisma from '@/db';
 import Sheet from './page';
@@ -30,7 +30,7 @@ export default async function SheetLayout() {
   const session = await getSession();
   if (!session) return redirect('/');
 
-  const current_user_id = await getCurrentUser(session as Session);
+  const current_user_id = await getCurrentUser(session);
   if (!current_user_id) return;
 
   const user = await prisma.user.findUnique({
