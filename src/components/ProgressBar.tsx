@@ -35,7 +35,7 @@ export default function LinearWithValueLabel({
   max_value: number;
 }) {
   return (
-    <Box sx={{ margin: 'auto' }} className="w-full lg:md:w-[60%]">
+    <Box sx={{ margin: 'auto' }} className="w-full lg:w-[60%] md:w-[50%]">
       <LinearProgressWithLabel
         value={progress_value * (100 / max_value)}
         max_value={max_value}

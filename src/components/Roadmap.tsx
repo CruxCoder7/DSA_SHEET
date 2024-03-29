@@ -32,7 +32,7 @@ export default function Roadmap() {
           </Link>
           <PiArrowBendDownRightThin
             color="white"
-            className="col-span-1 lg:md:ml-80 ml-16 row-span-1 col-start-1 row-start-2 "
+            className="col-span-1 lg:ml-80 md:ml-40 ml-16 row-span-1 col-start-1 row-start-2 "
             size={70}
           />
           <Link
@@ -59,7 +59,7 @@ export default function Roadmap() {
           </Link>
           <PiArrowBendDownRightThin
             color="white"
-            className="col-span-1 lg:md:ml-80 ml-16 row-span-1 col-start-1 row-start-4"
+            className="col-span-1 lg:ml-80 md:ml-40 ml-16 row-span-1 col-start-1 row-start-4"
             size={70}
           />
           <Link
@@ -85,7 +85,7 @@ export default function Roadmap() {
           </Link>
           <PiArrowBendDownRightThin
             color="white"
-            className="col-span-1 lg:md:ml-80 ml-16 row-span-1 col-start-1 row-start-6"
+            className="col-span-1 lg:ml-80 md:ml-40 ml-16 row-span-1 col-start-1 row-start-6"
             size={70}
           />
           <Link
@@ -111,7 +111,7 @@ export default function Roadmap() {
           </Link>
           <PiArrowBendDownRightThin
             color="white"
-            className="col-span-1 lg:md:ml-80 ml-16 row-span-1 col-start-1 row-start-8"
+            className="col-span-1 lg:ml-80 md:ml-40 ml-16 row-span-1 col-start-1 row-start-8"
             size={70}
           />
           <Link
@@ -137,7 +137,7 @@ export default function Roadmap() {
           </Link>
           <PiArrowBendDownRightThin
             color="white"
-            className="col-span-1 lg:md:ml-80 ml-16 row-span-1 col-start-1 row-start-10"
+            className="col-span-1 lg:ml-80 md:ml-40 ml-16 row-span-1 col-start-1 row-start-10"
             size={70}
           />
           <Link
@@ -163,7 +163,7 @@ export default function Roadmap() {
           </Link>
           <PiArrowBendDownRightThin
             color="white"
-            className="col-span-1 lg:md:ml-80 ml-16 row-span-1 col-start-1 row-start-12"
+            className="col-span-1 lg:ml-80 md:ml-40 ml-16 row-span-1 col-start-1 row-start-12"
             size={70}
           />
           <Link

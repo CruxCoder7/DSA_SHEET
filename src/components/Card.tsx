@@ -66,11 +66,14 @@ export function Card({
   return (
     <>
       <div
-        className="col-span-1 row-span-1 bg-[#333339] h-20 flex flex-col lg:md:flex-row justify-between px-5 
+        className="col-span-1 row-span-1 bg-[#333339] lg:h-20 md:h-20 h-24 flex flex-col md:flex-row lg:flex-row justify-between px-5 
         items-center cursor-pointer"
         onClick={() => setIsOpen(!open)}
       >
-        <p className="text-red-500 text-xl lg:md:mt-0 mt-2 lg:md:w-[50%]">
+        <p
+          className="text-red-500 lg:text-left 
+        md:text-left text-center text-xl lg:md:mt-0 mt-2 lg:w-[50%] md:w-[50%]"
+        >
           {topic}
         </p>
         <LinearWithValueLabel
@@ -114,12 +117,12 @@ function SubCard({
             <Link
               href={link}
               target="_blank"
-              className=" hover:underline w-fit lg:md:text-lg"
+              className="hover:underline w-fit lg:md:text-lg"
             >
               {name}
             </Link>
             <p
-              className={`text-xs 0  mt-0 lg:md:mt-1 ${
+              className={`text-xs 0 mt-0 lg:md:mt-1 ${
                 difficulty === 'EASY'
                   ? 'text-green-700'
                   : difficulty === 'MEDIUM'

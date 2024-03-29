@@ -13,18 +13,30 @@ export default async function Home() {
   return (
     <main className="flex flex-col">
       <div className="min-h-screen flex flex-col justify-evenly">
-        <div className="flex justify-between items-center w-full lg:md:p-7 p-4">
-          <Image src={'/cc_logo.webp'} alt="cc_logo" width={100} height={100} />
-          <Image src={'/SNU.avif'} alt="cc_logo" width={175} height={175} />
+        <div className="flex justify-between items-center w-full lg:p-7  p-4">
+          <Image
+            src={'/cc_logo.webp'}
+            alt="cc_logo"
+            width={100}
+            height={100}
+            className="md:h-40 md:w-40 lg:h-auto lg:w-auto"
+          />
+          <Image
+            src={'/SNU.avif'}
+            alt="cc_logo"
+            width={175}
+            height={175}
+            className="md:h-auto md:w-64 lg:h-auto lg:w-auto"
+          />
         </div>
         <div className="flex items-center justify-center flex-col gap-10 lg:md:mt-16 mt-10">
           <h1
-            className={`lg:md:text-7xl text-5xl text-center text-slate-200 ${ubuntu.className}`}
+            className={`lg:text-7xl md:text-7xl text-5xl text-center text-slate-200 ${ubuntu.className}`}
           >
             Dive into our DSA Problem Sheet
           </h1>
           <p
-            className={`text-slate-200 text-center lg:md:text-xl px-4 text-xl ${ubuntu.className}`}
+            className={`text-slate-200 text-center lg:text-xl md:text-xl px-4 text-lg ${ubuntu.className}`}
           >
             Curated with ❤️ by the Competitive Programming Team at{' '}
             <span className="text-[#bf950c]">SNUC Coding Club</span>
