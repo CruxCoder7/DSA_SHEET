@@ -3,7 +3,7 @@ import { Claims, getSession } from '@auth0/nextjs-auth0';
 import { redirect } from 'next/navigation';
 import prisma from '@/db';
 import Sheet from './page';
-import { AttemptedProblem, GroupByTopicType } from '../../../types/types';
+import { AttemptedProblem, GroupByTopicType } from '@/types';
 
 function groupByTopic(people: AttemptedProblem[]): GroupByTopicType {
   const groupedArray: GroupByTopicType = [];

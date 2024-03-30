@@ -9,7 +9,7 @@ import {
   CheckBoxProps,
   CheckboxStates,
   SubCardProps,
-} from '../../types/types';
+} from '@/types';
 import LinearWithValueLabel from './ProgressBar';
 
 export function Card({

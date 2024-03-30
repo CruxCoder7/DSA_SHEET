@@ -1,5 +1,5 @@
 import { Ubuntu } from 'next/font/google';
-import { NavbarProps } from '../../types/types';
+import { NavbarProps } from '@/types';
 import ProfilePicture from './ProfilePicture';
 
 const ubuntu = Ubuntu({ weight: '500', subsets: ['latin'] });

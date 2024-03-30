@@ -1,6 +1,6 @@
 'use client';
 import Navbar from '@/components/Navbar';
-import { SheetProps } from '../../../types/types';
+import { SheetProps } from '@/types';
 import { Card } from '@/components/Card';
 import { useState } from 'react';
 import { Ubuntu } from 'next/font/google';

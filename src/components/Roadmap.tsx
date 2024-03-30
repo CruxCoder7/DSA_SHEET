@@ -30,11 +30,9 @@ export default function Roadmap() {
           >
             Linked List
           </Link>
-          <PiArrowBendDownRightThin
-            color="white"
-            className="col-span-1 lg:ml-80 md:ml-40 ml-16 row-span-1 col-start-1 row-start-2 "
-            size={70}
-          />
+          <div className="w-full col-span-1 row-span-1 col-start-1 row-start-2 flex justify-end">
+            <PiArrowBendDownRightThin color="white" size={70} />
+          </div>
           <Link
             href={'/sheet#Arrays & HashMap'}
             className={`${ubuntu.className} bg-[#27272a] text-white rounded-lg shadow-xl hover-tooltip
@@ -46,7 +44,7 @@ export default function Roadmap() {
           </Link>
           <PiArrowBendDownLeftThin
             color="white"
-            className="col-span-1 row-span-1 col-start-2 row-start-3"
+            className="col-span-1 row-span-1  col-start-2 row-start-3"
             size={70}
           />
           <Link
@@ -57,11 +55,9 @@ export default function Roadmap() {
           >
             Two Pointers & Sliding Window
           </Link>
-          <PiArrowBendDownRightThin
-            color="white"
-            className="col-span-1 lg:ml-80 md:ml-40 ml-16 row-span-1 col-start-1 row-start-4"
-            size={70}
-          />
+          <div className="w-full col-span-1 row-span-1 col-start-1 row-start-4 flex justify-end">
+            <PiArrowBendDownRightThin color="white" className="" size={70} />
+          </div>
           <Link
             href={'/sheet#Prefix Sums'}
             className={`${ubuntu.className} bg-[#27272a] text-white rounded-lg shadow-xl hover-tooltip
@@ -83,11 +79,9 @@ export default function Roadmap() {
           >
             Binary Search
           </Link>
-          <PiArrowBendDownRightThin
-            color="white"
-            className="col-span-1 lg:ml-80 md:ml-40 ml-16 row-span-1 col-start-1 row-start-6"
-            size={70}
-          />
+          <div className="w-full col-span-1 row-span-1 col-start-1 row-start-6 flex justify-end">
+            <PiArrowBendDownRightThin color="white" className="" size={70} />
+          </div>
           <Link
             href={'/sheet#Stack & Queue'}
             className={`${ubuntu.className} bg-[#27272a] text-white rounded-lg shadow-xl hover-tooltip
@@ -109,11 +103,9 @@ export default function Roadmap() {
           >
             Heaps / Priority Queues
           </Link>
-          <PiArrowBendDownRightThin
-            color="white"
-            className="col-span-1 lg:ml-80 md:ml-40 ml-16 row-span-1 col-start-1 row-start-8"
-            size={70}
-          />
+          <div className="w-full col-span-1 row-span-1 col-start-1 row-start-8 flex justify-end">
+            <PiArrowBendDownRightThin color="white" className="" size={70} />
+          </div>
           <Link
             href={'/sheet#Intervals'}
             className={`${ubuntu.className} bg-[#27272a] text-white rounded-lg shadow-xl hover-tooltip
@@ -135,11 +127,9 @@ export default function Roadmap() {
           >
             Binary Tree
           </Link>
-          <PiArrowBendDownRightThin
-            color="white"
-            className="col-span-1 lg:ml-80 md:ml-40 ml-16 row-span-1 col-start-1 row-start-10"
-            size={70}
-          />
+          <div className="w-full col-span-1 row-span-1 col-start-1 row-start-10 flex justify-end">
+            <PiArrowBendDownRightThin color="white" className="" size={70} />
+          </div>
           <Link
             href={'/sheet#Backtracking'}
             className={`${ubuntu.className} bg-[#27272a] text-white rounded-lg shadow-xl hover-tooltip
@@ -161,11 +151,9 @@ export default function Roadmap() {
           >
             Trie / Prefix Tree
           </Link>
-          <PiArrowBendDownRightThin
-            color="white"
-            className="col-span-1 lg:ml-80 md:ml-40 ml-16 row-span-1 col-start-1 row-start-12"
-            size={70}
-          />
+          <div className="w-full col-span-1 row-span-1 col-start-1 row-start-12 flex justify-end">
+            <PiArrowBendDownRightThin color="white" className="" size={70} />
+          </div>
           <Link
             href={'/sheet#Graphs'}
             className={`${ubuntu.className} bg-[#27272a] text-white rounded-lg shadow-xl hover-tooltip
