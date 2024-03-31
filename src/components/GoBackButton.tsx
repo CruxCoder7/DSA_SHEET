@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { FaBackward } from 'react-icons/fa';
+import { IoMdArrowBack } from 'react-icons/io';
 
 export default function GoBackButton() {
   const router = useRouter();
@@ -39,7 +39,7 @@ export default function GoBackButton() {
         isVisible ? 'block' : 'hidden'
       }`}
     >
-      <FaBackward size={30} />
+      <IoMdArrowBack size={30} />
     </button>
   );
 }
