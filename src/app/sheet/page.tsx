@@ -4,6 +4,8 @@ import { SheetProps } from '@/types';
 import { Card } from '@/components/Card';
 import { useState } from 'react';
 import { Ubuntu } from 'next/font/google';
+import GoBackButton from '@/components/GoBackButton';
+import ScrollToTopButton from '@/components/ScollToTopButton';
 
 const ubuntu = Ubuntu({ weight: '500', subsets: ['latin'] });
 
@@ -21,8 +23,10 @@ export default function Sheet({
       return acc;
     }, 0)
   );
+
   return (
     <div className="w-full min-h-screen">
+      <GoBackButton />
       <Navbar
         session_user={session_user}
         attempted_problems={attempted_problems}
@@ -42,6 +46,7 @@ export default function Sheet({
           ))}
         </div>
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }

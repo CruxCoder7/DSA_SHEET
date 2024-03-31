@@ -124,6 +124,7 @@ export default function Roadmap() {
             className={`${ubuntu.className} bg-[#333339] text-white rounded-lg shadow-xl hover-tooltip
                hover:shadow-red-600 text-center p-6 mt-auto col-span-1 row-span-1 col-start-1 row-start-9`}
             title="💡One of the Most Important Topic"
+            scroll
           >
             Binary Tree
           </Link>
@@ -144,7 +145,7 @@ export default function Roadmap() {
             size={70}
           />
           <Link
-            href={'/sheet#Trie / Prefix Tree'}
+            href={'/sheet#Trie/Prefix Tree'}
             className={`${ubuntu.className} bg-[#333339] text-white rounded-lg shadow-xl hover-tooltip
                hover:shadow-red-600 text-center p-6 mt-auto col-span-1 row-span-1 col-start-1 row-start-11`}
             title="💡Don't know when it comes in handy, so it's better to learn"
