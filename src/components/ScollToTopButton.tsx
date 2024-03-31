@@ -37,7 +37,7 @@ export default function ScrollToTopButton() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-4 right-2 p-2 bg-gray-700 text-white rounded ${
+      className={`fixed bottom-4 lg:right-2 md:right-1 right-1 p-2 bg-gray-700 text-white rounded ${
         isVisible ? 'block' : 'hidden'
       }`}
     >

@@ -35,7 +35,7 @@ export default function GoBackButton() {
   return (
     <button
       onClick={handleGoBack}
-      className={`fixed top-4 left-4 p-2 bg-gray-700 text-white rounded ${
+      className={`fixed top-4 lg:left-4 md:left-2 left-2 z-10 p-2 bg-gray-700 text-white rounded ${
         isVisible ? 'block' : 'hidden'
       }`}
     >
