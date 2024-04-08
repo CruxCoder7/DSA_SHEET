@@ -17,6 +17,7 @@ export function Card({
   problem_names,
   user_id,
   onStatusUpdate,
+  attempted_problems,
 }: CardProps) {
   const [open, setIsOpen] = useState(true);
   const [checkboxStates, setCheckboxStates] = useState<CheckboxStates>(
@@ -64,7 +65,7 @@ export function Card({
       user_id,
       problem_id: problemId,
       status: newStatus,
-      attempted_problems: problem_names,
+      attempted_problems,
     });
   };
 

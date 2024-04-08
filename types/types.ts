@@ -33,6 +33,8 @@ export type CardProps = {
     problem_names: AttemptedProblem[];
     user_id: string;
     onStatusUpdate: Dispatch<SetStateAction<number>>;
+    attempted_problems: AttemptedProblem[];
+
 };
 
 export type SubCardProps = {

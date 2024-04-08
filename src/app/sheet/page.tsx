@@ -41,6 +41,7 @@ export default function Sheet({
                 problem_names={problem.names}
                 user_id={current_user_id}
                 onStatusUpdate={setTotal_Solved}
+                attempted_problems={attempted_problems}
               />
             </div>
           ))}
