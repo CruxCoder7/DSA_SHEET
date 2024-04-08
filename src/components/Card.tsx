@@ -60,7 +60,12 @@ export function Card({
       setCount((prev) => prev - 1);
       onStatusUpdate((prev) => prev - 1);
     }
-    updateProblemStatus({ user_id, problem_id: problemId, status: newStatus });
+    updateProblemStatus({
+      user_id,
+      problem_id: problemId,
+      status: newStatus,
+      attempted_problems: problem_names,
+    });
   };
 
   return (

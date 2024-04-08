@@ -14,7 +14,6 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.13",
     "@prisma/client": "^5.12.1",
-    "@prisma/extension-accelerate": "^1.0.0",
     "next": "latest",
     "nextjs-progressloader": "^1.1.0",
     "react": "^18",
