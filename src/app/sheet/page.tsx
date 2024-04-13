@@ -16,8 +16,8 @@ export default function Sheet({
   current_user_id,
 }: SheetProps) {
   const [total_solved, setTotal_Solved] = useState(
-    attempted_problems.reduce((acc, pb) => {
-      if (pb.status === 'SOLVED') {
+    Object.keys(attempted_problems).reduce((acc, pb) => {
+      if (attempted_problems[pb].status === 'SOLVED') {
         return acc + 1;
       }
       return acc;
@@ -34,11 +34,11 @@ export default function Sheet({
       />
       <div className={`lg:md:w-[70%] w-full m-auto ${ubuntu.className}`}>
         <div className="grid grid-cols-1 gap-10 p-10">
-          {problems.map((problem, i) => (
-            <div key={i} id={problem.topic}>
+          {Object.keys(problems).map((problem, i) => (
+            <div key={i} id={problem}>
               <Card
-                topic={problem.topic}
-                problem_names={problem.names}
+                topic={problem}
+                problem_names={problems[problem]}
                 user_id={current_user_id}
                 onStatusUpdate={setTotal_Solved}
                 attempted_problems={attempted_problems}

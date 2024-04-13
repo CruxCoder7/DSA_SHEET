@@ -36,6 +36,7 @@ export function Card({
     }
     return acc;
   }, 0);
+
   const [count, setCount] = useState(initial_count);
 
   const toggleCheckbox = (problemId: string) => {

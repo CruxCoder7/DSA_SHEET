@@ -1,53 +1,40 @@
 import { getCurrentUser } from '@/actions/getCurrentUser';
+import { ExtendedProblem, OutputObject } from '@/types';
 import { Claims, getSession } from '@auth0/nextjs-auth0';
 import { redirect } from 'next/navigation';
-import prisma from '@/db';
 import Sheet from './page';
-import { AttemptedProblem, GroupByTopicType } from '@/types';
 
-function groupByTopic(people: AttemptedProblem[]): GroupByTopicType {
-  const groupedArray: GroupByTopicType = [];
+function groupByTopic(input: ExtendedProblem): OutputObject {
+  const output: OutputObject = {};
 
-  for (let i = 0; i < people.length; i++) {
-    const { topic } = people[i];
-    let found = false;
-    for (let j = 0; j < groupedArray.length; j++) {
-      if (groupedArray[j].topic === topic) {
-        groupedArray[j].names.push(people[i]);
-        found = true;
-        break;
-      }
+  for (const key in input) {
+    const itemId = key;
+    const item = input[key];
+    const topic = item.topic;
+    if (!output[topic]) {
+      output[topic] = [];
     }
-    if (!found) {
-      groupedArray.push({ topic, names: [people[i]] });
-    }
+    output[topic].push({ id: itemId, ...item });
   }
 
-  return groupedArray;
+  return output;
 }
 
 export default async function SheetLayout() {
   const session = await getSession();
   if (!session) return redirect('/');
 
-  const current_user_id = await getCurrentUser(session);
-  if (!current_user_id) return;
-
-  const user = await prisma.user.findUnique({
-    where: {
-      id: current_user_id,
-    },
-  });
+  const user = await getCurrentUser(session);
 
   if (!user) return;
 
-  const attempted_problems = user.attempted_problems as AttemptedProblem[];
+  const attempted_problems = user.attempted_problems as ExtendedProblem;
   const problems = groupByTopic(attempted_problems);
 
   return (
     <Sheet
       session_user={session.user as Claims}
-      current_user_id={current_user_id}
+      current_user_id={user.id}
       attempted_problems={attempted_problems}
       problems={problems}
     />

@@ -15,7 +15,7 @@ export default function Navbar({
         <p className={`${ubuntu.className} text-md lg:text-xl md:text-xl`}>
           Total No. of Problems Solved:{' '}
           <span className="text-2xl px-2 text-[#bf950c] text-center lg:text-start md:text-start lg:inline-block md:inline-block block">
-            {total_solved} / {attempted_problems.length}
+            {total_solved} / {Object.keys(attempted_problems).length}
           </span>
         </p>
         <ProfilePicture profile_picture={session_user.picture} />

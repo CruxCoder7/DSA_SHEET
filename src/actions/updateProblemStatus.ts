@@ -1,23 +1,14 @@
 'use server';
 import prisma from "@/db";
-import { Problems } from "@prisma/client";
+import { ExtendedProblem } from "@/types";
 import { revalidatePath } from "next/cache";
-
-type AttemptedProblem = Problems & {
-    status: "SOLVED" | "REVISIT" | "UNSOLVED";
-};
 
 export default async function updateProblemStatus({ user_id, problem_id, status, attempted_problems }: {
     user_id: string, problem_id: string,
     status: "REVISIT" | "SOLVED" | "UNSOLVED",
-    attempted_problems: AttemptedProblem[];
+    attempted_problems: ExtendedProblem;
 }) {
-
-    for (let i = 0; i < attempted_problems.length; i++) {
-        if (attempted_problems[i].id === problem_id) {
-            attempted_problems[i].status = status;
-        }
-    }
+    attempted_problems[problem_id].status = status;
 
     await prisma.user.update({
         where: { id: user_id },

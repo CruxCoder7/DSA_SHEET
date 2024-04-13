@@ -1,13 +1,17 @@
 import prisma from '@/db';
+import { AttemptedProblem, ExtendedProblem } from '@/types';
 import { NextRequest } from 'next/server';
 
 async function InsertProblems() {
-    const problem_set = await prisma.problems.findMany() as unknown as { status: string; }[];
+    const problem_set: AttemptedProblem[] = await prisma.problems.findMany() as unknown as AttemptedProblem[];
+
+    const object_problem_set: ExtendedProblem = {};
 
     for (let i = 0; i < problem_set.length; i++) {
-        problem_set[i].status = "UNSOLVED";
+        const { id, ...data } = problem_set[i];
+        object_problem_set[problem_set[i].id] = { ...data, status: 'UNSOLVED' };
     }
-    return problem_set;
+    return object_problem_set;
 }
 
 export async function POST(req: NextRequest) {
