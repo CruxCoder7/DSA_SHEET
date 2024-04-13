@@ -51,7 +51,7 @@ export function Card({
     });
   };
 
-  const handleCheckboxChange = (problemId: string) => {
+  const handleCheckboxChange = async (problemId: string) => {
     toggleCheckbox(problemId);
 
     const newStatus = checkboxStates[problemId].checked ? 'UNSOLVED' : 'SOLVED';
@@ -62,7 +62,7 @@ export function Card({
       setCount((prev) => prev - 1);
       onStatusUpdate((prev) => prev - 1);
     }
-    updateProblemStatus({
+    await updateProblemStatus({
       user_id,
       problem_id: problemId,
       status: newStatus,
