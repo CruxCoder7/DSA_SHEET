@@ -3,6 +3,8 @@ import { ExtendedProblem } from "@/types";
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: NextRequest, res: NextResponse) {
     const data: {
         user_id: string,
@@ -21,6 +23,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     });
 
     revalidatePath('/sheet');
+
     return Response.json({
         status: 200
     });

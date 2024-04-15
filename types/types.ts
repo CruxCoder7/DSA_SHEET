@@ -87,6 +87,8 @@ export type SubCardProps = {
     user_id: string;
     checkboxStates: CheckboxStates;
     onCheckboxChange: (problemId: string) => void;
+    attempted_problems: ExtendedProblem;
+
 };
 
 export type CheckBoxProps = {
@@ -95,4 +97,11 @@ export type CheckBoxProps = {
     status: 'SOLVED' | 'REVISIT' | 'UNSOLVED';
     isChecked: boolean;
     onChange: () => void;
+    attempted_problems: ExtendedProblem;
+};
+
+export type ActionProps = {
+    user_id: string, problem_id: string,
+    status: "REVISIT" | "SOLVED" | "UNSOLVED",
+    attempted_problems: ExtendedProblem;
 };

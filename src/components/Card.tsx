@@ -1,15 +1,15 @@
 'use client';
 import updateProblemStatus from '@/actions/updateProblemStatus';
-import Link from 'next/link';
-import { useState } from 'react';
-import { GrCheckboxSelected } from 'react-icons/gr';
-import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import {
   CardProps,
   CheckBoxProps,
   CheckboxStates,
   SubCardProps,
 } from '@/types';
+import Link from 'next/link';
+import { useState } from 'react';
+import { GrCheckboxSelected } from 'react-icons/gr';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import LinearWithValueLabel from './ProgressBar';
 
 export function Card({
@@ -62,12 +62,6 @@ export function Card({
       setCount((prev) => prev - 1);
       onStatusUpdate((prev) => prev - 1);
     }
-    await updateProblemStatus({
-      user_id,
-      problem_id: problemId,
-      status: newStatus,
-      attempted_problems,
-    });
   };
 
   return (
@@ -99,6 +93,7 @@ export function Card({
           user_id={user_id}
           checkboxStates={checkboxStates}
           onCheckboxChange={handleCheckboxChange}
+          attempted_problems={attempted_problems}
         />
       )}
     </>
@@ -110,6 +105,7 @@ function SubCard({
   user_id,
   checkboxStates,
   onCheckboxChange,
+  attempted_problems,
 }: SubCardProps) {
   return (
     <div className={`bg-[#27272a] grid grid-cols-1 gap-5`}>
@@ -140,29 +136,50 @@ function SubCard({
               {difficulty}
             </p>
           </div>
-          <CheckBox
-            problem_id={id!}
-            user_id={user_id}
-            status={checkboxStates[id!].status}
-            isChecked={checkboxStates[id!].checked}
-            onChange={() => onCheckboxChange(id!)}
-          />
+          <button type="submit">
+            <CheckBox
+              problem_id={id!}
+              user_id={user_id}
+              status={checkboxStates[id!].status}
+              isChecked={checkboxStates[id!].checked}
+              onChange={() => onCheckboxChange(id!)}
+              attempted_problems={attempted_problems}
+            />
+          </button>
         </div>
       ))}
     </div>
   );
 }
 
-function CheckBox({ status, isChecked, onChange }: CheckBoxProps) {
+function CheckBox({
+  status,
+  isChecked,
+  onChange,
+  attempted_problems,
+  problem_id,
+  user_id,
+}: CheckBoxProps) {
   const checkboxColor =
     status === 'SOLVED' ? 'green' : isChecked ? 'green' : 'white';
 
+  const updateAction = updateProblemStatus.bind(null, {
+    attempted_problems,
+    problem_id,
+    status,
+    user_id,
+  });
+
   return (
-    <GrCheckboxSelected
-      color={checkboxColor}
-      size={30}
-      className="cursor-pointer"
-      onClick={onChange}
-    />
+    <form action={updateAction}>
+      <button type="submit">
+        <GrCheckboxSelected
+          color={checkboxColor}
+          size={30}
+          className="cursor-pointer"
+          onClick={onChange}
+        />
+      </button>
+    </form>
   );
 }
